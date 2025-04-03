@@ -1,0 +1,33 @@
+//Giải thích các câu lệnh: git commit --amend, git commit --amend -m”<message>”, git restore --staged <file>, git reset HEAD~1.
+==> dùng để sửa lại nội dung commit cho clear và chính xác
+1. Lệnh: git commit --amend: ==> dẫn đến chế độ Vim, trình sửa văn bản của terminal
+Để sửa được thì gõ phím I sẽ đưa vào chế độ insert và bắt đầu chỉnh sửa
+Nhấn esc để thoát insert và gõ":wq" để write và quit
+ 
+2. git commit --amend -m”<message>”
+==> sửa trực tiếp message và gộp câu lệnh commit --amend và chế độ insert vào 1 dòng lệnh git commit --amend -m”<message>”
+ 
+3. git restore --staged <file>
+==> đưa các file từ vùng staging về vùng working directory
+ 
+4. git reset HEAD~1
+==> đưa 1 commit recent từ vùng repository về working directory (uncommit)
+ 
+Bai 2: a. Tạo 3 file: file1, file2, file3 ==> local có 3 file
+b. Chạy lệnh: git init  ==> working directory: file 1, file 2 , file 3
+c. Chạy lệnh: git commit -m”init project”  ==> working directory: file 1, file 2 , file 3
+d. Chạy lệnh: git add file1 ==> working directory: file 2 , file 3// staging có file 1// vùng repository chưa có file nào
+e. Chạy lệnh: git commit -m”add file” ==> working directory: file 2 , file 3//vùng staging ko có file nào// vùng repository có file 1
+f. Chạy lệnh: git add . ==> vùng staging có file 2 và file 3// vùng repository có file 1
+g. Chạy lệnh: git restore --staged file2   ===> vùng working directory có file 2// vùng staging có file 3//vùng repository có file 1
+h. Chạy lệnh: git commit -m”add all files” ===> vùng working directory có file 2// vùng repository có file 1 và file 3
+i. Chạy lệnh: git reset HEAD~1 ===> vùng working directory có file 2 và file 3// vùng repository có file 1
+ 
+Bai 3:
+a. Chạy lệnh git init 
+b. Tạo file file1.txt, file2.txt, oops/file3.txt. ==> vùng working directory có file1.txt, file2.txt, oops/file3.txt.
+c. Thêm file .gitignore, thêm vào 2 dòng: ===> vẫn nằm ở working directory
+i. file1.txt 
+ii. oops/ 
+d. Chạy lệnh: git add . ===> vùng staging có file2.txt
+e. Chạy lệnh: git commit -m"init project" ===> vùng repository có file2.txt
